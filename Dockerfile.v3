@@ -8,6 +8,7 @@ RUN npm run build:v3
 
 
 FROM node:22-alpine3.21
+WORKDIR /app
 COPY package* ./
 
 # install only production dependencies

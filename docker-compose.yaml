@@ -1,19 +1,19 @@
 services:
   db:
-    container_name: docker-demo-db
-    image: mariadb:11.6
+    container_name: dock-demo-db
+    image: mariadb:11
     restart: on-failure
     environment:
-      MARIADB_USER: dockerdemo
-      MARIADB_PASSWORD: dockerdemo
-      MARIADB_DATABASE: dockerdemo
+      MARIADB_USER: dock-demo
+      MARIADB_PASSWORD: dock-demo
+      MARIADB_DATABASE: dock-demo
       MARIADB_ROOT_PASSWORD: dd-docker-demo
     networks:
       - docker-demo
 
   svc:
     container_name: svc
-    image: dockerdemo
+    image: dock-demo
     restart: unless-stopped
     build:
       context: ./
@@ -24,12 +24,12 @@ services:
       - db
     environment:
       PORT: 3050
-      DB_NAME: dockerdemo
-      DB_USER: dockerdemo
-      DB_PASS: dockerdemo
+      DB_NAME: dock-demo
+      DB_USER: root
+      DB_PASS: dd-docker-demo
       DB_HOST: db
       DB_PORT: 3306
-      INIT_DB: false
+      INIT_DB: true
     networks:
       - docker-demo
 
